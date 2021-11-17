@@ -1,6 +1,60 @@
 /* Your styles for the mobile/small screen view of the quiz go here*/
+@import url('https://fonts.googleapis.com/css?family=Poppins:300,400,600');
+
+:root {
+  --poppins: 'Poppins', sans-serif;
+  --super-light: #F4F6F7;	
+  --blue: #169ad3;
+  --grey-medium: #727476;	
+  --grey-dark: #404040;
+  --background-image: url(https://images.pexels.com/photos/274895/pexels-photo-274895.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=650&w=940);
+}
 
 
+* {
+   margin: 0;
+   font-family: var(--poppins);
+   font-weight: 400;
+}
+
+h1 {
+	color: var(--blue) !important;
+}
+
+body {
+    background: var(--background-image) no-repeat center center fixed; 
+    -webkit-background-size: cover;
+    -moz-background-size: cover;
+    -o-background-size: cover;
+    background-size: cover;
+    color: var(--grey-dark);
+}
+
+.container {
+	width: 100%;
+    max-width: 650px !important;
+    min-width: 400px;
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    background: white;
+    text-align: center;
+    padding: 20px;
+	border: 3px solid var(--grey-dark)
+}
+
+input[type="radio"] {
+	text-align: left;
+}
+
+input[type="text"] {
+	padding: 10px
+}
+
+.centered {
+
+}
 
 @media all and (min-width: 600px){
 	/* Your styles for the desktop view go here */
