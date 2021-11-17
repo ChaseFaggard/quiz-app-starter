@@ -11,8 +11,7 @@ class Database {
             method: 'POST',
             headers: {
                 'Content-Type': 'application/json',
-                'Authorization': `Bearer ${this.TOKEN}`,
-                'Access-Control-Allow-Origin': '*'
+                'Authorization': `Bearer ${this.TOKEN}`
             },
             body: 
                 `{

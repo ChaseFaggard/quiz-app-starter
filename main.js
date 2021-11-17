@@ -22,18 +22,9 @@ const questions = {
     }
 }
 
-const question = {
-    question: 'What color is the sky?',
-    a1: 'Blue',
-    a2: 'Green',
-    a3: 'Yellow',
-    a4: 'Purple',
-    answer: 'Blue'
-}
-
 const main = async () => {
     /* Add dummy question to database */
-    Database.create("quiz", question)
+    Database.create("quiz", questions[0])
     
    contentUI.innerHTML = 
    `<button onClick="next()">Start Quiz</button>`
