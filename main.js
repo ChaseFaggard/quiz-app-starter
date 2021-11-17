@@ -1,6 +1,8 @@
 let index = 0;
 let results = []
 
+const contentUI = document.querySelector('#content')
+
 const questions = {
     0: {
         question: 'What color is the sky?',
@@ -20,15 +22,25 @@ const questions = {
     }
 }
 
+const question = {
+    question: 'What color is the sky?',
+    a1: 'Blue',
+    a2: 'Green',
+    a3: 'Yellow',
+    a4: 'Purple',
+    answer: 'Blue'
+}
+
 const main = async () => {
-    //let item = await Database.get("quiz", 1)
-    //console.log(item)
+    /* Add dummy question to database */
+    Database.create("quiz", question)
     
-    next()
+   contentUI.innerHTML = 
+   `<button onClick="next()">Start Quiz</button>`
 }
 
 const next = () => {
-    document.querySelector('#question').innerHTML = `
+    contentUI.innerHTML = `
     <h3 class="text-center">${questions[index].question}</h3>
     <form onSubit="next()" class="form">
         <input type="radio" id="${questions[index].a1}" name="answer" value="${questions[index].a1}">
@@ -59,16 +71,41 @@ const checkResults = () => {
             break
         }
     }
-    if(answer == questions[index].answer) console.log("Correct")
-    else console.log("Wrong")
+    if(answer != undefined) {
+        if(answer == questions[index].answer) results[index] = 1
+        else results[index] = 0
 
-    index++
-
-    next()
+        if(index == Object.keys(questions).length-1) {
+            finish()
+        }
+        else {
+            index++
+            next()
+        }
+    }    
 }
 
+const finish = () => {
+    contentUI.innerHTML = `
+    <h3>Score</h3>
+    <h5>${getScore()}</h5>
+    <button onClick="restart()">Restart</restart>
+    `
+}
 
+const getScore = () => {
+    let correct = 0;
+    for(let i = 0; i < results.length; i++) {
+        if(results[i] == 1) correct++
+    }
+    return Math.round((correct / results.length) * 100) + '%'
+}
 
+const restart = () => {
+    index = 0
+    results = []
+    next()
+}
 
 window.addEventListener('DOMContentLoaded', main())
 
